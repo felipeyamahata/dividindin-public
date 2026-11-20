@@ -1,0 +1,24 @@
+.settlement-view { display: grid; gap: 26px; padding-bottom: 20px; color: #f8f7f2; }
+.settlement-view h2 { margin: 0 0 12px; font-size: 17px; font-weight: 750; }
+.settlement-view__heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.settlement-view__heading h2 { margin: 0; }
+.settlement-view__list { display: grid; gap: 10px; }
+.settlement-view__card, .settlement-view__summary, .settlement-view__accordion, .settlement-view__empty { border: 1px solid #3c3c39; border-radius: 14px; background: #191919; }
+.settlement-view__person { width: 100%; display: flex; align-items: center; gap: 12px; padding: 16px; color: inherit; text-align: left; }
+.settlement-view__avatar { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border: 1px solid #51514c; border-radius: 50%; overflow: hidden; background: var(--participant-color, #555); font-size: 12px; font-weight: 700; }
+.settlement-view__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.settlement-view__avatar--small { width: 26px; height: 26px; flex-basis: 26px; font-size: 9px; }
+.settlement-view__identity { display: grid; flex: 1; min-width: 0; gap: 3px; }
+.settlement-view__identity strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settlement-view__identity span, .settlement-view__summary span, .settlement-view__history span { color: #c6c6bd; font-size: 12px; }
+.settlement-view__debit { color: #f45655; } .settlement-view__credit { color: #d8ff36; }
+.settlement-view__chevron { flex: none; color: #aaa; transition: transform 180ms ease; } .settlement-view__chevron.is-open { transform: rotate(180deg); }
+.settlement-view__card-action { padding: 0 16px 16px; } .settlement-view__card-action button { width: 100%; padding: 11px; border-radius: 10px; background: #d8ff36; color: #111; font-weight: 750; }
+.settlement-view__record { min-height: 40px; padding: 8px 14px; border: 1px solid #55554f; border-radius: 999px; color: #cdf235; font-size: 13px; font-weight: 700; }
+.settlement-view__empty { padding: 20px; color: #c6c6bd; font-size: 14px; }
+.settlement-view__summary { display: flex; justify-content: space-between; gap: 12px; padding: 18px; } .settlement-view__summary div { display: grid; gap: 5px; } .settlement-view__summary div:last-child { text-align: right; } .settlement-view__summary strong { font-size: 17px; }
+.settlement-view__accordion { overflow: hidden; } .settlement-view__accordion > button { width: 100%; padding: 17px; display: flex; justify-content: space-between; align-items: center; text-align: left; font-weight: 700; } .settlement-view__accordion small { margin-left: 5px; color: #aaa; font-weight: 400; }
+.settlement-view__rows { border-top: 1px solid #3c3c39; padding: 0 16px; } .settlement-view__rows p { padding: 15px 0; color: #c6c6bd; font-size: 13px; }
+.settlement-view__transfer, .settlement-view__history { display: flex; align-items: center; gap: 8px; padding: 12px 0; font-size: 13px; } .settlement-view__transfer + .settlement-view__transfer, .settlement-view__history + .settlement-view__history { border-top: 1px solid #3c3c39; }
+.settlement-view__transfer > span:not(.settlement-view__avatar) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .settlement-view__transfer > strong { margin-left: auto; white-space: nowrap; color: #d8ff36; } .settlement-view__history > div { display: grid; gap: 4px; min-width: 0; flex: 1; } .settlement-view__history > strong { white-space: nowrap; } .settlement-view__history button { color: #c6c6bd; padding: 8px; }
+@media (prefers-reduced-motion: reduce) { .settlement-view__chevron { transition: none; } }

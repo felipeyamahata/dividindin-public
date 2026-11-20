@@ -1,0 +1,302 @@
+.post-login-install-dialog {
+  width: min(420px, calc(100% - 32px));
+  max-width: none;
+  margin: auto;
+  padding: clamp(22px, 5vw, 28px);
+  border: 1px solid #3c3c39;
+  border-radius: 22px;
+  background: #171717;
+  color: #f8f7f2;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(216, 255, 54, 0.06) inset;
+  opacity: 0;
+  transform-origin: center bottom;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+.post-login-install-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .post-login-install-dialog {
+    transform: translateY(14px) scale(0.95);
+  }
+}
+
+.post-login-install-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+.post-login-install-dialog[open]:where(:not([data-closing])) {
+  opacity: 1;
+  transition-duration: 320ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@starting-style {
+  .post-login-install-dialog[open]:where(:not([data-closing])) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .post-login-install-dialog[open]:where(:not([data-closing])) {
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .post-login-install-dialog[open]:where(:not([data-closing])) {
+      transform: translateY(18px) scale(0.94);
+    }
+  }
+}
+
+.post-login-install-dialog[open]:where(:not([data-closing]))::backdrop {
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+  transition-duration: 260ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@starting-style {
+  .post-login-install-dialog[open]:where(:not([data-closing]))::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.post-login-install-dialog__preview {
+  position: relative;
+  width: min(228px, 64vw);
+  aspect-ratio: 1 / 1;
+  margin: -4px auto 4px;
+  overflow: hidden;
+  border-radius: 26px;
+}
+
+.post-login-install-dialog__preview-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-mask-image: radial-gradient(
+    closest-side at 50% 50%,
+    #000 54%,
+    rgba(0, 0, 0, 0.78) 72%,
+    rgba(0, 0, 0, 0.24) 88%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    closest-side at 50% 50%,
+    #000 54%,
+    rgba(0, 0, 0, 0.78) 72%,
+    rgba(0, 0, 0, 0.24) 88%,
+    transparent 100%
+  );
+}
+
+.post-login-install-dialog__preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, #171717 0%, transparent 18%, transparent 78%, #171717 100%),
+    linear-gradient(to right, #171717 0%, transparent 18%, transparent 82%, #171717 100%);
+}
+
+.post-login-install-dialog__body {
+  display: grid;
+  gap: 10px;
+}
+
+.post-login-install-dialog__body--invite {
+  justify-items: center;
+  text-align: center;
+}
+
+.post-login-install-dialog__body--invite .post-login-install-dialog__subtitle {
+  max-width: 30ch;
+}
+
+.post-login-install-dialog__body--invite .post-login-install-dialog__actions,
+.post-login-install-dialog__body--invite .post-login-install-dialog__notice {
+  width: 100%;
+}
+
+.post-login-install-dialog__body--guide {
+  animation: post-login-guide-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes post-login-guide-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.post-login-install-dialog__body h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.post-login-install-dialog__subtitle {
+  margin: 0;
+  color: #c6c6bd;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.post-login-install-dialog__notice {
+  margin: 2px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #3c3c39;
+  border-radius: 12px;
+  background: #20201e;
+  color: #d8ff36;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.post-login-install-dialog__steps {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 6px;
+  padding: 0;
+  list-style: none;
+}
+
+.post-login-install-dialog__steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e4e4dc;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.post-login-install-dialog__step-num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #d8ff36;
+  color: #111;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.post-login-install-dialog__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.post-login-install-dialog__actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.post-login-install-dialog__primary {
+  border: 0;
+  background: #d8ff36;
+  color: #111;
+}
+
+.post-login-install-dialog__primary:hover:not(:disabled) {
+  background: #e5ff78;
+}
+
+.post-login-install-dialog__later {
+  border: 1px solid #44443f;
+  background: transparent;
+  color: #c6c6bd;
+  font-weight: 700;
+}
+
+.post-login-install-dialog__later:hover:not(:disabled) {
+  background: #252522;
+  color: #f8f7f2;
+}
+
+.post-login-install-dialog button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.post-login-install-dialog button:focus-visible {
+  outline: 3px solid #d8ff36;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__preview,
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__body h2,
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__subtitle,
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__actions {
+    transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1), transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__body h2 {
+    transition-delay: 25ms;
+  }
+
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__subtitle {
+    transition-delay: 50ms;
+  }
+
+  .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__actions {
+    transition-delay: 75ms;
+  }
+
+  @starting-style {
+    .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__preview,
+    .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__body h2,
+    .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__subtitle,
+    .post-login-install-dialog[open]:where(:not([data-closing])) .post-login-install-dialog__actions {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-login-install-dialog,
+  .post-login-install-dialog::backdrop {
+    transition-duration: 100ms;
+  }
+
+  .post-login-install-dialog__body--guide {
+    animation: none;
+  }
+}

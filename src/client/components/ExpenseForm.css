@@ -1,0 +1,124 @@
+/* Expense form controls */
+.expense-form .expense-form__payer { width: 100%; min-height: 48px; padding: 10px 36px 10px 12px; color: #f8f7f2; background: #171717; border: 1px solid #383835; border-radius: 12px; font-size: 15px; }
+.expense-form .expense-form__payer:focus-visible { outline: 2px solid #d8ff35; outline-offset: 2px; }
+.expense-form .expense-form__segments { position: relative; isolation: isolate; border: 1px solid #383835; gap: 0; }
+.expense-form .expense-form__segments::before { content: ''; position: absolute; z-index: -1; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 8px) / 2); border-radius: 12px; background: #d8ff35; transform: translateX(calc(var(--segment-index, 0) * 100%)); transition: transform 300ms cubic-bezier(.22, 1, .36, 1); }
+.expense-form .expense-form__segments--three::before { width: calc((100% - 8px) / 3); }
+.expense-form .expense-form__segments[data-index='1'] { --segment-index: 1; }
+.expense-form .expense-form__segments[data-index='2'] { --segment-index: 2; }
+.expense-form .expense-form__segments button { position: relative; color: #c6c6bd; background: transparent; border: 0; box-shadow: none; cursor: pointer; transition: color 220ms ease; }
+.expense-form .expense-form__segments button[aria-pressed="true"] { background: transparent; color: #111; box-shadow: none; font-weight: 800; }
+@media (prefers-reduced-motion: reduce) { .expense-form .expense-form__segments::before, .expense-form .expense-form__segments button { transition: none; } }
+.expense-form .expense-form__payer-menu { position: relative; min-width: 0; width: 100%; }
+.expense-form summary.expense-form__payer { display: flex; align-items: center; gap: 10px; padding: 8px 14px; cursor: pointer; list-style: none; user-select: none; }
+.expense-form summary.expense-form__payer::-webkit-details-marker { display: none; }
+.expense-form .expense-form__payer-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
+.expense-form summary.expense-form__payer > svg { flex: none; margin-left: auto; color: #888; }
+.expense-form .expense-form__payer-avatar { display: grid; flex: none; place-items: center; width: 30px; height: 30px; overflow: hidden; border-radius: 50%; background: var(--participant-color, #555); color: #fff; font-size: 10px; font-weight: 700; }
+.expense-form .expense-form__payer-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.expense-form .expense-form__payer-options { position: absolute; z-index: 10; top: calc(100% + 6px); left: 0; right: 0; max-height: 210px; overflow-y: auto; padding: 5px; background: #202020; border: 1px solid #444440; border-radius: 12px; box-shadow: 0 12px 30px #000a; }
+.expense-form .expense-form__payer-options button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 6px 9px; border: 0; background: transparent; border-radius: 8px; color: #f8f7f2; cursor: pointer; }
+.expense-form .expense-form__payer-options button:hover, .expense-form .expense-form__payer-options button:focus-visible { background: #323230; }
+.expense-form .expense-form__payer-options button > svg { color: #d8ff35; flex: none; }
+.expense-form__field { display: grid; gap: 7px; font-size: 14px; font-weight: 650; }
+.expense-form .expense-form__segments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; border-radius: 15px; font-size: 13px; background: #171717; }
+.expense-form .expense-form__segments--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.expense-form .expense-form__segments button { min-height: 38px; padding: 6px 3px; font-weight: 700; }
+.expense-form__participants { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -ms-overflow-style: none; padding: 8px 10px; border: 1px solid #383835; border-radius: 12px; background: #171717; }
+.expense-form__participants > * { flex: 0 0 auto; }
+.expense-form__participants::-webkit-scrollbar { display: none; }
+.expense-form .expense-form__participant-all { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 2px 2px 8px; margin-bottom: 2px; border-bottom: 1px solid #2a2a28; cursor: pointer; }
+.expense-form .expense-form__participant-name--all { font-weight: 700; color: #f8f7f2; padding-left: 2px; }
+.expense-form__participants label, .expense-form__person { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 38px; }
+.expense-form__participants input[type='checkbox'] { accent-color: #d8ff36; width: 18px; height: 18px; }
+.expense-form__person > span { min-width: 0; overflow-wrap: anywhere; }
+.expense-form__person small { display: block; color: #b8b8b0; font-size: 11px; }
+.expense-form .expense-form__shares { display: flex; align-items: center; flex: none; gap: 5px; min-width: 0; }
+.expense-form .expense-form__shares button { width: 32px; height: 32px; border-radius: 8px; background: #383832; border: 0; color: #f8f7f2; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; user-select: none; transition: background 150ms ease, opacity 150ms ease; }
+.expense-form .expense-form__shares button:hover:not(:disabled) { background: #4a4a44; }
+.expense-form .expense-form__shares button:disabled { opacity: 0.35; cursor: not-allowed; }
+.expense-form .expense-form__shares input { flex: 0 0 42px; width: 42px; min-width: 0; min-height: 34px; padding: 4px 0; text-align: center; border: 1px solid #444; border-radius: 8px; background: #222; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; outline: none; -moz-appearance: textfield; }
+.expense-form .expense-form__shares input::placeholder { color: #777770; font-weight: 600; }
+.expense-form .expense-form__shares input:focus-visible { border-color: #d8ff35; }
+.expense-form .expense-form__shares input::-webkit-outer-spin-button, .expense-form .expense-form__shares input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.expense-form .expense-form__allocation { width: 110px; min-height: 38px; padding: 6px; text-align: right; border: 1px solid #444; border-radius: 8px; background: #222; color: #fff; }
+.expense-form .expense-form__adorned-input { display: inline-flex; align-items: center; min-height: 38px; padding: 0 10px; background: #222; border: 1px solid #444; border-radius: 8px; box-sizing: border-box; transition: border-color 150ms ease; flex: 0 0 auto; }
+.expense-form .expense-form__adorned-input:focus-within { border-color: #d8ff35; }
+.expense-form .expense-form__adorned-input--exact { width: 120px; gap: 6px; }
+.expense-form .expense-form__adorned-input--percent { width: 86px; gap: 4px; }
+.expense-form .expense-form__adornment { font-size: 13px; font-weight: 700; color: #888882; user-select: none; flex: none; }
+.expense-form .expense-form__allocation-input { width: 100%; min-width: 0; border: 0; background: transparent; color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; outline: none; padding: 0; text-align: right; }
+.expense-form .expense-form__allocation-input::placeholder { color: #777770; font-weight: 500; }
+.expense-form .expense-form__participants label { display: flex; align-items: center; min-width: 0; gap: 10px; cursor: pointer; }
+.expense-form .expense-form__participants input[type='checkbox'] { flex: none; width: 18px; height: 18px; min-height: 0; padding: 0; margin-left: auto; cursor: pointer; }
+.expense-form__participant-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.expense-form__person { min-width: 0; }
+.expense-form__person-identity { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.expense-form__person--shares { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; align-items: center; gap: 8px 12px; min-height: 0; padding: 10px 2px; border-bottom: 1px solid #2a2a28; }
+.expense-form__person--shares:last-child { border-bottom: 0; padding-bottom: 2px; }
+.expense-form__person--shares .expense-form__person-identity { grid-column: 1 / -1; grid-row: 1; }
+.expense-form__person--shares .expense-form__share-summary { grid-column: 1; grid-row: 2; display: flex; align-items: baseline; justify-content: flex-start; gap: 6px; min-width: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.expense-form__person--shares .expense-form__share-fraction { color: #888882; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.expense-form__person--shares .expense-form__share-amount { color: #f8f7f2; font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.expense-form__person--shares .expense-form__shares { grid-column: 2; grid-row: 2; margin-left: auto; }
+.expense-form .expense-form__allocation { flex: 0 1 110px; min-width: 0; }
+.expense-form__field, .app-dialog__form, .app-dialog__form > * { min-width: 0; }
+.expense-form .expense-form__segments button { min-width: 0; overflow-wrap: anywhere; }
+.expense-form .expense-form__segments button { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; overflow-wrap: normal; font-size: clamp(10px, 3vw, 13px); }
+
+.expense-form__settle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(216, 255, 53, 0.4);
+  border-radius: 10px;
+  background: rgba(216, 255, 53, 0.1);
+  color: #d8ff35;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+.expense-form__settle-btn:hover { background: rgba(216, 255, 53, 0.18); border-color: #d8ff35; }
+.expense-form__settle-btn:active { transform: scale(0.98); }
+
+.expense-form__recipients {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 6px;
+  border: 1px solid #383835;
+  border-radius: 12px;
+  background: #171717;
+}
+.expense-form__recipients::-webkit-scrollbar { display: none; }
+.expense-form__recipient {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #f8f7f2;
+  text-align: left;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.expense-form__recipient:hover { background: #232321; }
+.expense-form__recipient.is-selected { background: rgba(216, 255, 53, 0.1); border-color: rgba(216, 255, 53, 0.55); }
+.expense-form__recipient-info { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.expense-form__recipient-info strong { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.expense-form__recipient-status { font-size: 12px; color: #a8a89e; font-variant-numeric: tabular-nums; }
+.expense-form__recipient-status--pay { color: #ff8c86; }
+.expense-form__recipient-status--receive { color: #d8ff35; }
+.expense-form__recipient-check { flex: none; color: #d8ff35; }

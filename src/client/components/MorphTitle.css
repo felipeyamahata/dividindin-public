@@ -1,0 +1,26 @@
+.morph-title {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.morph-title__text {
+  opacity: 1;
+  transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1) 30ms;
+}
+
+.morph-title__text.is-out {
+  opacity: 0;
+  transition: opacity 130ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .morph-title {
+    transition: none !important;
+  }
+  .morph-title__text,
+  .morph-title__text.is-out {
+    transition: none;
+  }
+}

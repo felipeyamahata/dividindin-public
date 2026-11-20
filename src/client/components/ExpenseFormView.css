@@ -1,0 +1,171 @@
+/* Form fills vertical viewport between persistent header and container bottom */
+.expense-page__form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: min(100%, 480px);
+  margin: 14px auto 0;
+  color: #f8f7f2;
+}
+
+/* Viewport with internal scrolling only, zero page scroll */
+.expense-page__viewport {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 6px 2px 18px;
+}
+
+.expense-page__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.expense-page__viewport--top {
+  mask-image: linear-gradient(to bottom, transparent, black 24px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 24px);
+}
+
+.expense-page__viewport--bottom {
+  mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent);
+}
+
+.expense-page__viewport--top.expense-page__viewport--bottom {
+  mask-image: linear-gradient(to bottom, transparent, black 24px, black calc(100% - 24px), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 24px, black calc(100% - 24px), transparent);
+}
+
+.expense-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Suspended field labels & inputs */
+.expense-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+.expense-field__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #a0a09a;
+  letter-spacing: -0.01em;
+  padding-left: 2px;
+}
+
+.expense-field__amount-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  padding: 8px 16px;
+  border: 1px solid #383835;
+  border-radius: 14px;
+  background: #171717;
+  transition: border-color 150ms ease;
+}
+
+.expense-field__amount-box:focus-within {
+  border-color: #d8ff35;
+}
+
+.expense-field__amount-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #d8ff35;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-align: center;
+  outline: none;
+  padding: 0;
+}
+
+.expense-field__amount-input::placeholder {
+  color: #555;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+}
+
+.expense-field__text-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid #383835;
+  border-radius: 12px;
+  background: #171717;
+  color: #f8f7f2;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 150ms ease;
+  box-sizing: border-box;
+}
+
+.expense-field__text-input:focus-visible {
+  outline: 2px solid #d8ff35;
+  outline-offset: 1px;
+  border-color: #d8ff35;
+}
+
+/* Fixed Footer with submit button */
+.expense-page__footer {
+  flex: none;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expense-page__error {
+  color: #ffaaa3;
+  font-size: 13px;
+  margin: 0;
+  text-align: center;
+}
+
+.expense-page__submit {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 14px;
+  background: #d8ff35;
+  color: #101010;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.expense-page__submit:hover {
+  opacity: 0.92;
+}
+
+.expense-page__submit:active {
+  transform: scale(0.99);
+}
+
+.expense-page__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.expense-page__submit--warning {
+  background: #2b1717 !important;
+  color: #ff857a !important;
+  border: 1px solid #5a2626 !important;
+  opacity: 1 !important;
+  cursor: not-allowed;
+}

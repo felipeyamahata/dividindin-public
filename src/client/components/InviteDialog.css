@@ -1,0 +1,221 @@
+.invite-dialog {
+  width: min(440px, calc(100% - 40px));
+  max-width: none;
+  margin: auto;
+  padding: clamp(24px, 5vw, 28px);
+  border: 1px solid #3c3c39;
+  border-radius: 20px;
+  background: #171717;
+  color: #f8f7f2;
+  box-shadow: 0 24px 80px #0009;
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .invite-dialog {
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+.invite-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+.invite-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+.invite-dialog[open]:where(:not([data-closing])) {
+  opacity: 1;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@starting-style {
+  .invite-dialog[open]:where(:not([data-closing])) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .invite-dialog[open]:where(:not([data-closing])) {
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .invite-dialog[open]:where(:not([data-closing])) {
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+}
+
+.invite-dialog[open]:where(:not([data-closing]))::backdrop {
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+  transition-duration: 260ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@starting-style {
+  .invite-dialog[open]:where(:not([data-closing]))::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.invite-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.invite-dialog__header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.invite-dialog__close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #c6c6bd;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.invite-dialog__close:hover {
+  background: #30302e;
+  color: #fff;
+}
+
+.invite-dialog__close:active {
+  transform: scale(0.94);
+}
+
+.invite-dialog label {
+  display: block;
+  margin-bottom: 8px;
+  color: #c6c6bd;
+  font-size: 13px;
+}
+
+.invite-dialog input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #64645d;
+  border-radius: 10px;
+  background: #222220;
+  color: #f8f7f2;
+  font-size: 16px;
+}
+
+.invite-dialog__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.invite-dialog__copy,
+.invite-dialog__share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.invite-dialog__copy {
+  border: 1px solid #55554f;
+  background: #222220;
+  color: #f8f7f2;
+}
+
+.invite-dialog__copy:hover {
+  border-color: #77776f;
+  background: #2a2a27;
+}
+
+.invite-dialog__share {
+  border: 0;
+  background: #d8ff36;
+  color: #111;
+}
+
+.invite-dialog__share:hover {
+  background: #e5ff78;
+}
+
+.invite-dialog__copy:active,
+.invite-dialog__share:active {
+  transform: scale(0.97);
+}
+
+.invite-dialog__status {
+  min-height: 18px;
+  margin: 10px 0 0;
+  color: #d8ff36;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.invite-dialog__status.is-visible {
+  opacity: 1;
+}
+
+.invite-dialog :is(button, input):focus-visible {
+  outline: 3px solid #d8ff36;
+  outline-offset: 3px;
+}
+
+@media (max-width: 380px) {
+  .invite-dialog__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invite-dialog,
+  .invite-dialog::backdrop,
+  .invite-dialog__close,
+  .invite-dialog__copy,
+  .invite-dialog__share,
+  .invite-dialog__status {
+    transition-duration: 100ms;
+  }
+
+  .invite-dialog__close:active,
+  .invite-dialog__copy:active,
+  .invite-dialog__share:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,167 @@
+.install-guide-dialog {
+  width: min(440px, calc(100% - 40px));
+  max-width: none;
+  margin: auto;
+  padding: clamp(24px, 5vw, 28px);
+  border: 1px solid #3c3c39;
+  border-radius: 20px;
+  background: #171717;
+  color: #f8f7f2;
+  box-shadow: 0 24px 80px #0009;
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .install-guide-dialog {
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+.install-guide-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+.install-guide-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+.install-guide-dialog[open]:where(:not([data-closing])) {
+  opacity: 1;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@starting-style {
+  .install-guide-dialog[open]:where(:not([data-closing])) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .install-guide-dialog[open]:where(:not([data-closing])) {
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .install-guide-dialog[open]:where(:not([data-closing])) {
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+}
+
+.install-guide-dialog[open]:where(:not([data-closing]))::backdrop {
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+  transition-duration: 260ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@starting-style {
+  .install-guide-dialog[open]:where(:not([data-closing]))::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.install-guide-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.install-guide-dialog__header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.install-guide-dialog__close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #c6c6bd;
+  cursor: pointer;
+}
+
+.install-guide-dialog__close:hover {
+  background: #30302e;
+  color: #fff;
+}
+
+.install-guide-dialog__steps {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.install-guide-dialog__steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #ecece4;
+}
+
+.install-guide-dialog__num {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #272923;
+  border: 1px solid #4b4c37;
+  color: #d8ff36;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.install-guide-dialog__done {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: #d8ff36;
+  color: #111;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.install-guide-dialog__done:hover {
+  background: #e5ff78;
+}
+
+.install-guide-dialog button:focus-visible {
+  outline: 3px solid #d8ff36;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-guide-dialog,
+  .install-guide-dialog::backdrop {
+    transition: none;
+  }
+}

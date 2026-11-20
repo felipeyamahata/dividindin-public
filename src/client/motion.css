@@ -1,0 +1,134 @@
+/* The photographs live outside the routed views, so their timeline never restarts. */
+.app-background.login-page__photo { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.app-foreground { position: relative; z-index: 1; }
+.login-page, .events-home { background: transparent; }
+@media (max-width: 480px) {
+  .events-home.events-home { background: transparent; }
+  .events-home::before { content: ''; position: fixed; z-index: -1; inset: -100px 0; background: rgba(11, 11, 11, .85); pointer-events: none; }
+}
+@media (min-width: 481px) {
+  .events-home__shell { position: relative; isolation: isolate; background: transparent; }
+  .events-home__shell::before {
+    content: ''; position: absolute; z-index: -1; inset: -320px; pointer-events: none;
+    background-color: rgba(11, 11, 11, .85);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.085'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 320px, #000 calc(100% - 320px), transparent), linear-gradient(to bottom, transparent, #000 320px, #000 calc(100% - 320px), transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent, #000 320px, #000 calc(100% - 320px), transparent), linear-gradient(to bottom, transparent, #000 320px, #000 calc(100% - 320px), transparent);
+    mask-composite: intersect;
+  }
+}
+
+.avatar-flight-clone {
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.avatar-flight-clone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@keyframes ui-appear { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ui-dock-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ui-mark-center { from { opacity: .65; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes ui-mark-left { from { opacity: .65; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes ui-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ui-dialog-in { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.login-card { animation: ui-appear 800ms cubic-bezier(.16, 1, .3, 1) both; }
+.events-home__list-heading, .event-shell__header, .event-shell__section-title { animation: ui-appear 680ms cubic-bezier(.16, 1, .3, 1) both; }
+.events-home__event, .expense-feed__item,
+.settlement-view__heading, .settlement-view__card, .settlement-view__empty, .settlement-view__accordion {
+  animation: ui-appear 660ms cubic-bezier(.16, 1, .3, 1) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+.events-home__empty, .expense-feed__empty, .event-shell__content > :not(.expense-feed):not(.settlement-view):not(.expense-detail),
+.profile-page__body > .profile-page__identity .profile-page__identity-info,
+.profile-page__body > :not(.profile-page__identity),
+.donate-page__scroll-body > *,
+.expense-page__content > * { animation: ui-appear 700ms cubic-bezier(.16, 1, .3, 1) backwards; }
+.event-shell__content--no-reveal .expense-feed__item,
+.expense-feed__item[data-live-inserted='true'] { animation: none; }
+
+.receipt-morph__flight {
+  pointer-events: none;
+}
+.receipt-morph__clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.receipt-morph__layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.receipt-morph__bubble-scope {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+.receipt-morph__bubble-scope::after {
+  content: none !important;
+}
+.receipt-morph__bubble-inner {
+  width: 100% !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  pointer-events: none;
+}
+.receipt-morph__edge {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  height: 8px;
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  z-index: 1;
+}
+.receipt-morph__edge--top {
+  top: -8px;
+  background-position: left bottom;
+}
+.receipt-morph__edge--bottom {
+  bottom: -8px;
+  background-position: left top;
+}
+.donate-page__scroll-body > :nth-child(1) { animation-delay: 0ms; }
+.donate-page__scroll-body > :nth-child(2) { animation-delay: 80ms; }
+.donate-page__scroll-body > :nth-child(3) { animation-delay: 180ms; }
+.donate-page__scroll-body > :nth-child(n+4) { animation-delay: 280ms; }
+.profile-page__body > :nth-child(2), .expense-page__content > :nth-child(2) { animation-delay: 80ms; }
+.profile-page__body > :nth-child(3), .expense-page__content > :nth-child(3) { animation-delay: 180ms; }
+.profile-page__body > :nth-child(4), .expense-page__content > :nth-child(4) { animation-delay: 300ms; }
+.profile-page__body > :nth-child(5), .expense-page__content > :nth-child(5) { animation-delay: 440ms; }
+.profile-page__body > :nth-child(n+6), .expense-page__content > :nth-child(n+6) { animation-delay: 580ms; }
+.event-shell__dock, .expense-detail__action-area, .events-home__footer, .donate-page__footer, .expense-page__footer { animation: ui-dock-in 800ms cubic-bezier(.16, 1, .3, 1) backwards; }
+.new-event-overlay, .profile-dialog__overlay, .donate-dialog__overlay { animation: ui-fade-in 360ms ease both; }
+.new-event-modal, .profile-dialog, .donate-dialog { animation: ui-dialog-in 600ms cubic-bezier(.16, 1, .3, 1) both; }
+.events-home__event:not(:has(.events-home__event-menu-trigger:active)):active, .expense-feed__bubble:active { transform: scale(.99); }
+@media (prefers-reduced-motion: reduce) {
+  .login-card, .events-home__list-heading, .event-shell__header, .event-shell__section-title,
+  .events-home__event, .expense-feed__item, .events-home__empty, .expense-feed__empty,
+  .settlement-view__heading, .settlement-view__card, .settlement-view__empty, .settlement-view__accordion,
+  .event-shell__content > *,
+  .profile-page__body > .profile-page__identity .profile-page__identity-info,
+  .profile-page__body > :not(.profile-page__identity),
+  .donate-page__scroll-body > *,
+  .donate-page__footer,
+  .donate-dialog__overlay,
+  .donate-dialog,
+  .expense-page__content > *, .expense-page__footer, .event-shell__dock, .expense-detail__action-area,
+  .events-home__footer, .new-event-overlay, .profile-dialog__overlay, .new-event-modal, .profile-dialog { animation: none; }
+  .events-home__event:active, .expense-feed__bubble:active { transform: none; }
+}

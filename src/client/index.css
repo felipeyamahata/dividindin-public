@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Universal scrollbar suppression for clean viewport architecture */
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom scrollbar hiding for clean mobile swipeable rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@font-face { font-family: 'Nunito Brand'; src: url('./assets/fonts/nunito-900.ttf') format('truetype'); font-weight: 900; font-style: normal; font-display: swap; }
+
+.participant-name--generic {
+  font-style: italic;
+  font-weight: 400;
+}

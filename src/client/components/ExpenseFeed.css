@@ -1,0 +1,84 @@
+.expense-feed {
+  --feed-avatar-size: 38px;
+  --feed-opposing-spacer: 25px; /* 38px * (1 - 0.35) = 24.7px (~35% avatar invasion) */
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.expense-feed__group { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.expense-feed__group + .expense-feed__group { margin-top: 20px; }
+.expense-feed__date-header { position: sticky; top: 28px; z-index: 4; display: flex; justify-content: center; pointer-events: none; padding: 2px 0 8px; }
+.expense-feed__date-pill { pointer-events: auto; display: inline-flex; align-items: center; justify-content: center; padding: 4px 14px; border-radius: 9999px; background: #1c1c1b; border: 1px solid #3c3c39; color: #c6c6bd; font-size: 11px; font-weight: 650; letter-spacing: .02em; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5); }
+.expense-feed__group-items { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+.expense-feed__item { display: flex; align-items: flex-start; min-width: 0; gap: 10px; }
+.expense-feed__item::after { content: ''; flex: 0 0 var(--feed-opposing-spacer, 25px); }
+.expense-feed__item--own { flex-direction: row-reverse; }
+.expense-feed__avatar-spacer { display: block; flex: 0 0 var(--feed-avatar-size, 38px); width: var(--feed-avatar-size, 38px); height: var(--feed-avatar-size, 38px); pointer-events: none; }
+.expense-feed__item--chained { margin-top: -2px; }
+.expense-feed__body { display: grid; flex: 1; min-width: 0; gap: 5px; }
+.expense-feed__payer { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #c6c6bd; font-size: 12px; }
+.expense-feed__bubble { position: relative; display: flex; align-items: stretch; justify-content: space-between; gap: 10px; flex: 1; min-width: 0; padding: 16px; border: 1px solid #3c3c39; border-radius: 3px 18px 18px 18px; background: #191919; color: #f8f7f2; text-align: left; cursor: pointer; }
+.expense-feed__item--own .expense-feed__bubble { border-radius: 18px 3px 18px 18px; background: #d8ff35; color: #0b0b0b; }
+.expense-feed__item--own .expense-feed__bubble { flex-direction: row-reverse; text-align: right; }
+.expense-feed__avatar { display: grid; place-items: center; flex: 0 0 var(--feed-avatar-size, 38px); width: var(--feed-avatar-size, 38px); height: var(--feed-avatar-size, 38px); overflow: hidden; border: 0.5px solid #51514c; border-radius: 50%; background: var(--participant-color, #555); color: #fff; font-size: 11px; font-weight: 800; }
+.expense-feed__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.expense-feed__item--own .expense-feed__avatar { border: 1px solid #d8ff35; }
+.expense-feed__details, .expense-feed__meta { display: flex; flex-direction: column; justify-content: space-between; gap: 5px; min-width: 0; }
+.expense-feed__meta { flex: 1; }
+.expense-feed__details { flex: 1; align-items: flex-end; text-align: right; }
+.expense-feed__item--own .expense-feed__details { align-items: flex-start; text-align: left; }
+.expense-feed__details h2 { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 0; font-size: 15px; font-weight: 500; }
+.expense-feed__meta span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #b9b9b1; font-size: 12px; }
+.expense-feed__item--own .expense-feed__meta span { color: #5c5c5b; }
+.expense-feed__creator { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.expense-feed__meta span.expense-feed__creator-label { font-size: 10.5px; font-weight: 400; opacity: 0.8; line-height: 1.2; }
+.expense-feed__meta span.expense-feed__creator-name { font-size: 12px; font-weight: 500; line-height: 1.25; }
+.expense-feed__amount { color: #fff; font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; flex-shrink: 0; }
+.expense-feed__item--own .expense-feed__amount { color: #000; }
+.expense-feed__actions { position: relative; flex: none; }
+.expense-feed__more { display: grid; place-items: center; width: 36px; height: 40px; color: #b9b9b1; border: 0; border-radius: 8px; background: transparent; cursor: pointer; }
+.expense-feed__menu { position: absolute; z-index: 2; right: 0; top: 100%; width: 140px; padding: 5px; border: 1px solid #4b4b46; border-radius: 10px; background: #242424; box-shadow: 0 12px 30px #0009; }
+.expense-feed__menu button { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px; border: 0; border-radius: 7px; color: #f8f7f2; background: transparent; text-align: left; font-size: 13px; cursor: pointer; }
+.expense-feed__menu button:hover { background: #383835; }
+.expense-feed__empty { display: grid; gap: 7px; padding: 22px; border: 1px solid #3c3c39; border-radius: 14px; background: #191919; }
+.expense-feed__empty strong { font-size: 16px; }
+.expense-feed__empty span { color: #c6c6bd; font-size: 13px; }
+
+.expense-feed__timeline-row { display: flex; justify-content: center; padding: 2px 0; }
+.expense-feed__timeline-stack { display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 100%; }
+.expense-feed__timeline-pill { display: inline-flex; flex-wrap: nowrap; align-items: center; gap: 6px; max-width: 100%; padding: 4px 10px 4px 5px; border: 1px solid #32322e; border-radius: 999px; background: rgba(24, 24, 23, 0.92); color: #c6c6bd; font-size: 11px; line-height: 1.25; }
+.expense-feed__timeline-avatar { display: grid; place-items: center; flex: 0 0 18px; width: 18px; height: 18px; overflow: hidden; border-radius: 50%; border: 0.5px solid #51514c; background: var(--participant-color, #555); color: #fff; font-size: 7px; font-weight: 800; }
+.expense-feed__timeline-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.expense-feed__timeline-text { display: inline-flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.expense-feed__timeline-text strong { color: #f4f4ee; font-weight: 750; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 135px; }
+.expense-feed__timeline-arrow { color: #8c8c84; font-weight: 700; flex: none; }
+.expense-feed__timeline-time { color: #8c8c84; font-size: 10px; font-variant-numeric: tabular-nums; flex: none; padding-left: 2px; }
+
+.expense-feed__payment-target { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-width: 0; }
+.expense-feed__payment-arrow { flex: none; color: #d8ff35; }
+.expense-feed__item--own .expense-feed__payment-arrow { color: #0b0b0b; }
+.expense-feed__target-avatar { display: grid; place-items: center; flex: 0 0 22px; width: 22px; height: 22px; overflow: hidden; border-radius: 50%; border: 0.5px solid #51514c; background: var(--participant-color, #555); color: #fff; font-size: 8px; font-weight: 800; }
+.expense-feed__target-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.expense-feed__item--own .expense-feed__target-avatar { border-color: rgba(11, 11, 11, 0.35); }
+.expense-feed__target-name { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.expense-feed__amount--payment { color: #d8ff35; }
+.expense-feed__item--own .expense-feed__amount--payment { color: #000; }
+
+.expense-feed__item .expense-feed__bubble--payment { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 10px; text-align: left; }
+.expense-feed__payment-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; min-width: 0; }
+.expense-feed__payment-header .expense-feed__payment-target { flex: 1; min-width: 0; }
+.expense-feed__payment-verb { flex: none; color: #c6c6bd; font-size: 13px; font-weight: 500; }
+.expense-feed__item--own .expense-feed__payment-verb { color: #3a3a37; }
+.expense-feed__payment-meta { flex: 0 0 auto; align-items: flex-end; text-align: right; gap: 2px; }
+.expense-feed__payment-total { display: flex; align-items: baseline; min-width: 0; }
+.expense-feed__payment-breakdown { display: grid; gap: 4px; padding-top: 9px; border-top: 1px solid #32322e; }
+.expense-feed__item--own .expense-feed__payment-breakdown { border-top-color: rgba(11, 11, 11, 0.16); }
+.expense-feed__payment-row { display: flex; align-items: baseline; gap: 5px; font-size: 12.5px; line-height: 1.35; min-width: 0; }
+.expense-feed__payment-row span { color: #b9b9b1; font-weight: 400; }
+.expense-feed__item--own .expense-feed__payment-row span { color: #4a4a47; }
+.expense-feed__payment-row strong { color: #f8f7f2; font-weight: 750; font-variant-numeric: tabular-nums; }
+.expense-feed__item--own .expense-feed__payment-row strong { color: #0b0b0b; }
+.expense-feed__payment-row--credit strong { color: #d8ff35; }
+.expense-feed__item--own .expense-feed__payment-row--credit strong { color: #000; }
+.expense-feed__payment-row--remaining strong { color: #f45655; }
+.expense-feed__item--own .expense-feed__payment-row--remaining strong { color: #b91c1c; }
